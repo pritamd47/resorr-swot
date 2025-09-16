@@ -1,0 +1,9 @@
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - pip
+  - jupyterlab
+  - rat
+  - conda-build
+  - ruamel_yaml

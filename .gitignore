@@ -1,0 +1,9 @@
+.env/
+.rat_env/
+data/
+.vscode/
+models/
+**/papermill/
+results/
+**.pyc
+secrets/

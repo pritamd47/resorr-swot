@@ -1,0 +1,22 @@
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - pip
+  - jupyterlab
+  - xarray
+  - rioxarray
+  - matplotlib
+  - numpy
+  - pandas
+  - netcdf4
+  - geopandas
+  - conda-build
+  - contextily
+  - tqdm
+  - ipywidgets
+  - dask
+  - papermill
+  - pip:
+    - geonetworkx
+    - podaac-data-subscriber
