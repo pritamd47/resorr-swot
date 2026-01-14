@@ -1,0 +1,45 @@
+MetSim:
+  calendar: proleptic_gregorian
+  domain: /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/metsim/metsim_inputs/domain.nc
+  forcing: /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/metsim/metsim_inputs/metsim_input.nc
+  forcing_fmt: netcdf
+  in_format: netcdf
+  out_dir: /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/metsim/metsim_outputs/
+  out_prefix: 6H_VIC
+  start: 2020-5-06
+  state: /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/metsim/metsim_inputs/state.nc
+  stop: 2025-7-15
+  time_step: 360
+chunks:
+  lat: 30
+  lon: 20
+domain_vars:
+  elev: elev
+  lat: lat
+  lon: lon
+  mask: mask
+forcing_vars:
+  prec: precip
+  t_max: tmax
+  t_min: tmin
+  wind: wind
+out_vars:
+  air_pressure:
+    out_name: air_pressure
+  longwave:
+    out_name: longwave
+  prec:
+    out_name: prec
+  shortwave:
+    out_name: shortwave
+  temp:
+    out_name: temp
+  vapor_pressure:
+    out_name: vapor_pressure
+  wind:
+    out_name: wind
+state_vars:
+  prec: precip
+  t_max: tmax
+  t_min: tmin
+  wind: wind

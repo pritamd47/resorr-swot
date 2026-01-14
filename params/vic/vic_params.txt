@@ -1,0 +1,93 @@
+#------------------------- VIC Parameter File -------------------------#
+### VIC Parameter file created by VICParamerFile() on 2025-07-24 11:11:36
+
+# Model Steps
+MODEL_STEPS_PER_DAY   4
+SNOW_STEPS_PER_DAY    4
+RUNOFF_STEPS_PER_DAY  4
+
+# Simulation Period
+STARTYEAR             2020
+STARTMONTH            05
+STARTDAY              06
+ENDYEAR               2025
+ENDMONTH              07
+ENDDAY                15
+CALENDAR              PROLEPTIC_GREGORIAN
+
+# Model decisions
+FULL_ENERGY           FALSE
+QUICK_FLUX            TRUE
+FROZEN_SOIL           FALSE
+
+# Domain
+DOMAIN                /tiger1/pdas47/ResORR/data-cumberland/tennessee/basins/cumberland/vic/vic_basin_params/vic_domain.nc
+DOMAIN_TYPE           LAT	lat
+DOMAIN_TYPE           LON	lon
+DOMAIN_TYPE           MASK	mask
+DOMAIN_TYPE           AREA	area
+DOMAIN_TYPE           FRAC	frac
+DOMAIN_TYPE           YDIM	lat
+DOMAIN_TYPE           XDIM	lon
+
+# State Files and Parameters
+#INIT_STATE           
+STATENAME             /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/vic/vic_init_states/state_
+STATEYEAR             2025
+STATEMONTH            07
+STATEDAY              15
+STATESEC              0
+STATE_FORMAT          NETCDF4
+
+# Forcings
+FORCING1              /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/vic/vic_inputs/forcing_
+FORCE_TYPE            AIR_TEMP        temp
+FORCE_TYPE            PREC            prec
+FORCE_TYPE            PRESSURE        air_pressure
+FORCE_TYPE            SWDOWN          shortwave
+FORCE_TYPE            LWDOWN          longwave
+FORCE_TYPE            VP              vapor_pressure
+FORCE_TYPE            WIND            wind
+WIND_H                10.0
+
+# Parameters
+PARAMETERS            /tiger1/pdas47/ResORR/data-cumberland/tennessee/basins/cumberland/vic/vic_basin_params/vic_soil_param.nc
+LAI_SRC               FROM_VEGPARAM
+FCAN_SRC              FROM_VEGPARAM
+ALB_SRC               FROM_VEGPARAM
+NODES                 3
+SNOW_BAND             FALSE
+
+# Extra options
+
+# Results
+RESULT_DIR            /tiger1/pdas47/resorr-swot/data/tennesse/basins/cumberland/vic/vic_outputs/
+OUTFILE               nc_fluxes
+COMPRESS              FALSE
+OUT_FORMAT            NETCDF4
+AGGFREQ               NDAYS 1
+LOG_DIR               /tiger1/pdas47/resorr-swot/data/tennesse/vic_logs/cumberland/
+
+# Output Variables
+OUTVAR                OUT_PREC
+OUTVAR                OUT_EVAP
+OUTVAR                OUT_RUNOFF
+OUTVAR                OUT_BASEFLOW
+OUTVAR                OUT_SOIL_LIQ
+OUTVAR                OUT_SOIL_MOIST
+OUTVAR                OUT_EVAP_CANOP
+OUTVAR                OUT_EVAP_BARE
+OUTVAR                OUT_SWE
+OUTVAR                OUT_LAI
+OUTVAR                OUT_WDEW
+OUTVAR                OUT_TRANSP_VEG
+OUTVAR                OUT_SNOW_CANOPY
+OUTVAR                OUT_SOIL_TEMP
+OUTVAR                OUT_SURF_TEMP
+OUTVAR                OUT_AIR_TEMP
+OUTVAR                OUT_FCANOPY
+OUTVAR                OUT_ALBEDO
+OUTVAR                OUT_R_NET
+OUTVAR                OUT_VP
+OUTVAR                OUT_WIND
+OUTVAR                OUT_PRESSURE

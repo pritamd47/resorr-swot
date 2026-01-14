@@ -1,0 +1,27 @@
+# ROUTE PARAMETER FILE created by RouteParameterFile() on 2022-12-06 23:11:41 - run_20221206_231141
+# FLOW DIRECTION FILE
+data/Project/basins/AMAZON/ro/pars/fl.asc
+# VELOCITY FILE
+.false.
+1.5
+# DIFFUSION FILE
+.false.
+800
+# XMASK FILE
+.false.
+5000
+# FRACTION FILE
+.false.
+1
+# STATION FILE
+data/Project/basins/AMAZON/ro/pars/sta_xy.txt
+# INPUTS and PRECISION
+data/Project/basins/AMAZON/ro/in/fluxes_
+2
+# OUTPUT FILES
+data/Project/basins/AMAZON/ro/ou/
+# START and END
+2016 01 03
+2022 07 01
+# UH
+params/routing/uh.txt

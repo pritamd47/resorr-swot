@@ -1,0 +1,9 @@
+BASIN,BASIN,BASIN,VIC,VIC
+major_basin_name,basin_name,basin_id,vic_basin_continent_param_filename,vic_basin_continent_domain_filename
+Texas,SABINE,4233,namerica_params.nc,namerica_domain.nc
+Texas,TRINITY,4247,namerica_params.nc,namerica_domain.nc
+Texas,BRAZOS,4203,namerica_params.nc,namerica_domain.nc
+Texas,COLORADO,4209,namerica_params.nc,namerica_domain.nc
+Texas,SAN ANTONIO,4239,namerica_params.nc,namerica_domain.nc
+Texas,NUECES,4223,namerica_params.nc,namerica_domain.nc
+Texas,RIO GRANDE,4231,namerica_params.nc,namerica_domain.nc
