@@ -7,3 +7,5 @@ models/
 results/
 **.pyc
 secrets/
+.backup_env/
+.backup_rat_env/
