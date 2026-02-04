@@ -1,27 +1,28 @@
 #################### RAT configuration file ###################
 
 GLOBAL:
-  steps: [9, 10, 12, 13, 14] # List of step numbers that needs to be executed by RAT. For more information refer to RAT documentation. Default is all steps from 1 to 14.
+  steps: [9, 10] # List of step numbers that needs to be executed by RAT. For more information refer to RAT documentation. Default is all steps from 1 to 14.
   project_dir: /tiger1/pdas47/resorr-swot           # Main directory for all RAT models, parameters and global data. RAT Data can have a separate directory
   data_dir: /tiger1/pdas47/resorr-swot/data         # Data Directory for RAT output and intermediary files. It can be inside project directory.
   basin_shpfile: /tiger1/pdas47/resorr-swot/data/cumberland-watershed/cumberland-watershed.geojson                                    # Basin Shapefile in json format which can have multiple basins with unique id.
-  basin_shpfile_column_dict: {id: Id}           # Dictionary of column names in basin_shpfile defined above (must have a unique id column) 
+  basin_shpfile_column_dict: {id: Id}               # Dictionary of column names in basin_shpfile defined above (must have a unique id column) 
   elevation_tif_file:                               # Elevation raster file in tif format. It should be having elevations in meter and in WGS84 crs.
-  multiprocessing: 64                               # How many cores to use
+  multiprocessing: 2                                # How many cores to use
   multiple_basin_run: false                         # True if running RAT for multiple basins in one go, will require basins_metadata(in csv format) to update any basin particular parameter in this config file
   basins_metadata: /tiger1/pdas47/resorr-swot/params/basins_metadata.csv # A csv file which is multi-indexed and have same indexing as rat_config.yml # Only required if multiple_basin_run is true, otherwise ignored 
   basins_to_process:  #['basin1','basin2']          # List of basin names to process if multiple_basin_run is true, otherwise ignored  (must match with index 'BASIN: basin_name:' defined in basins_metadata csv file)                 
+  grwl: /tiger1/pdas47/resorr-swot/data/global_data/global_data/global_river_data/GRWL_summaryStats.shp
 
 # If multiple_basin_run is True, any parameter in this config file which varies from basin to basin must be specified in the basins_metadata csv file defined above. Otherwise it can be specified in this config file.
 BASIN:
-  region_name: USA                                      # Name of the region - used to cluster data for multiple basins within one region
-  basin_name: cumberland                                      # Basin name - used for saving data related to that basin
-  basin_id: 1                                        # Basin id to map the basin in basin_shpfile defined in GLOBAL parameters 
-  spin_up: false                                     # True if VIC spin up is required for a particular basin, otherwise False #Recommended true if running RAT for first time in a basin
-  start: 2022-06-01                                # yyyy-mm-dd #Start date for RAT excluding any spin-up-time
-  end: 2025-10-30                                  # yyyy-mm-dd #End date for RAT
+  region_name: tennesse                             # Name of the region - used to cluster data for multiple basins within one region
+  basin_name: cumberland                            # Basin name - used for saving data related to that basin
+  basin_id: 1                                       # Basin id to map the basin in basin_shpfile defined in GLOBAL parameters 
+  spin_up: false                                    # True if VIC spin up is required for a particular basin, otherwise False #Recommended true if running RAT for first time in a basin
+  start: 2023-06-01                                 # yyyy-mm-dd #Start date for RAT excluding any spin-up-time
+  end: 2025-10-30                                   # yyyy-mm-dd #End date for RAT
   vic_init_state: #2022-08-18                       # yyyy-mm-dd or Path # Date of which or The path of initial state of VIC for the particular basin exists #Ignored if spin_up is True
-  rout_init_state: #2022-08-18                       # yyyy-mm-dd or Path # Date of which or The path of initial state of Routing for the particular basin exists #Ignored if spin_up is True
+  rout_init_state: #2022-08-18                      # yyyy-mm-dd or Path # Date of which or The path of initial state of Routing for the particular basin exists #Ignored if spin_up is True
 
 METSIM:
   metsim_env: /tiger1/pdas47/resorr-swot/models/metsim # Path of Metsim python environment
@@ -37,8 +38,8 @@ VIC:
   vic_basin_continent_param_filename:               # Name of the global vic soil parameter file (in netcdf format) # Only required if vic_global_data=True, otherwise ignored
   vic_basin_continent_domain_filename:              # Name of the global vic soil parameter file (in netcdf format) # Only required if vic_global_data=True, otherwise ignored
   # If basin vic parameter information is available and can be used as it is for basin [vic_global_data must be False], provide the following two parameters
-  vic_soil_param_file:                              #Vic Soil Parameter File Path (in netcdf format)  # Only required if vic_global_data=False, otherwise ignored
-  vic_domain_file:                                  #Vic Domain File Path (in netcdf format)   # Only required if vic_global_data=False, otherwise ignored 
+  vic_soil_param_file:                              # Vic Soil Parameter File Path (in netcdf format)  # Only required if vic_global_data=False, otherwise ignored
+  vic_domain_file:                                  # Vic Domain File Path (in netcdf format)   # Only required if vic_global_data=False, otherwise ignored 
 
 ##---- VIC Parameters (Optional; must match the option names of [global parameter file of VIC](https://vic.readthedocs.io/en/master/Documentation/Drivers/Image/GlobalParam/)).
 ##---- If not provided, then the parameter file defined by `vic_param_file` will be used as the parameter file
@@ -86,7 +87,7 @@ ROUTING:
   ##### Stations File (Each dam is a station)
   ## Either provide a global (relative to basin) stations_geojson_file with point geometry column and define the column names using dictionary or provide station_latlon file path in csv format
   ## If you want to use directly station_xy.txt file, set station_global_data to False and leave station_latlon_path empty (not comment)
-  station_global_data: true                         # True if giving global stations_file and column names, otherwise false and give station_latlon_path
+  station_global_data: false                         # True if giving global stations_file and column names, otherwise false and give station_latlon_path
 
   ## If station_global_data is True fill the below variables
   stations_vector_file:                             # Must have geometry(vector) column and separate lat, lon columns
@@ -94,7 +95,7 @@ ROUTING:
   stations_vector_file_columns_dict: {id_column: GRAND_ID, name_column: DAM_NAME,
     lon_column: LONG_DD, lat_column: LAT_DD}
   ## If station_global_data is False fill the below variable
-  station_latlon_path:                              # In lat lon format csv format #should have columns run, name, lat, lon
+  station_latlon_path:                              # In lat lon format csv or geojson format #should have columns run, name, lat, lon, geometry (optional)
 
 ROUTING PARAMETERS:                                 # (Optional; if passed, will be given the highest priority and will override the default ones calculated by scripts)
   # flow_direction_file:                            # Will be generated automatically from global_flow_dir_tif_file if given, otherwise uncomment and provide the path here
@@ -116,8 +117,8 @@ GEE:
   ## If station_global_data is True, id_column and dam_name_column values should match with the values of id_column and name_column of stations_vector_file.
   ## If station_global_data is False, values of dam_name_column should match with the name column in station_latlon_path or station_file in Routing or Routing Parameters.
   ## If station_global_data is False, id_column field is not required below, can be left blank.
-  reservoir_vector_file_columns_dict: {id_column: GRAND_ID, dam_name_column: DAM_NAME,
-    area_column: AREA_SKM}
+  reservoir_vector_file_columns_dict: {id_column: name, dam_name_column: name, area_column: area,
+    dam_height: dam_height, dam_lat: LAT_DD, dam_lon: LONG_DD}
 
   ##The BOT Filter can be used to have granular control over the filtering applied to surface area (SA) time series.
   # To use the filter, set 'apply' in the below field to 'true' and set the three thresholds.
@@ -126,7 +127,7 @@ GEE:
   # Trend_threshold: The intensity of filtering out optical SA values whose trend differs from SAR trend
   # Threshold ranges: (Off: 0 - 9: MAX)
   # Eg. Relatively Aggressive filtering set: [8,8,8]                     x
-  bot_filter: {apply: false, bias_threshold: 9, outlier_threshold: 8, trend_threshold: 9}
+  bot_filter: {apply: true, bias_threshold: 9, outlier_threshold: 8, trend_threshold: 9}
 
 ALTIMETER:
   altimeter_tracks:                         # altimeter track paths in geojson format
